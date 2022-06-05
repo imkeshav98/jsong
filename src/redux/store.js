@@ -11,7 +11,7 @@ import { songsReducer } from "./songsData/reducer";
 import { userReducer } from "./userData/reducer";
 
 const rootReducer = combineReducers({
-  artist: artistReducer,
+  artists: artistReducer,
   songs: songsReducer,
   user: userReducer,
 });

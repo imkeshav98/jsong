@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchartists } from "../../redux/artistData/action";
 import { fetchSongs } from "../../redux/songsData/action";
+import { Ratings } from "../global/ratings/Ratings";
 import "./Home.css";
 
 export const Home = () => {
+  const songs = useSelector((state) => state.songs.songsData);
+  const artists = useSelector((state) => state.artists.artistsData);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSongs());
+    dispatch(fetchSongs("rating")); // fetching songs by rating
+    dispatch(fetchartists("rating")); // fetching artists by rating
   }, []);
-
-  const songs = useSelector((state) => state.songs.songsData);
-
-  function handleRating(song, rating) {
-    console.log(song, rating);
-  }
 
   return (
     <section className="home">
@@ -52,6 +52,39 @@ export const Home = () => {
                     ))}
                   </td>
                   <td>{song.rating}</td>
+                  <td>{<Ratings />}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="topArtists_container">
+          <div className=" table-top">
+            <h2 className="table-top__title">Top 10 Artist</h2>
+          </div>
+          <table className="topArtists_table">
+            <thead>
+              <tr>
+                <th>Artists</th>
+                <th>Date of Birth</th>
+                <th>Avg. Rating</th>
+                <th>Songs</th>
+              </tr>
+            </thead>
+            <tbody>
+              {artists.map((artist) => (
+                <tr key={artist._id}>
+                  <td>{artist.name}</td>
+                  <td>{artist.dob}</td>
+                  <td>{artist.avgRating}</td>
+                  <td className="artist_table__songs">
+                    {artist.songs.map((song) => (
+                      <p key={song}>
+                        {song}
+                        {", "}
+                      </p>
+                    ))}
+                  </td>
                 </tr>
               ))}
             </tbody>

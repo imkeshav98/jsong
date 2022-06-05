@@ -16,16 +16,28 @@
     color: var(--main-color);
 }
 
-.topSongs_table {
+.topSongs_container,
+.topArtists_container {
+    margin-bottom: 3rem;
+}
+
+.topSongs_table,
+.topArtists_table {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid var(--bg-color);
+    width: 100%;
 }
-.topSongs_table th {
+
+.topSongs_table th ,
+.topArtists_table th {
     background-color: var(--bg-color);
+    text-align: center;
 }
 .topSongs_table th,
-.topSongs_table td {
+.topArtists_table th,
+.topSongs_table td ,
+.topArtists_table td {
     border: 1px solid var(--bg-color);
     padding: 1rem 2rem;
 
@@ -35,6 +47,13 @@
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
+}
+
+.artist_table__songs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .fa-star {

@@ -38,13 +38,13 @@ const sortSongData = (sortBy) => {
   };
 };
 
-const fetchSongs = () => async (dispatch) => {
+const fetchSongs = (sortBy) => async (dispatch) => {
   dispatch(fetchSongDataLoading()); // set loading to true
   try {
     const res = await fetch("https://jsong-backend.herokuapp.com/api/songs/"); // fetching data from the server
     const data = await res.json();
     dispatch(fetchSongDataSucess(data));
-    dispatch(sortSongData("rating")); // default sort by rating
+    dispatch(sortSongData(sortBy)); // sort data
   } catch (error) {
     dispatch(fetchSongDataFailure(error)); // set error to true
   }

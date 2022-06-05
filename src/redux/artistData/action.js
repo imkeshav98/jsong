@@ -25,12 +25,20 @@ const fetchArtistDataLoading = () => {
   };
 };
 
-const fetchartists = () => async (dispatch) => {
+const sortArtistData = (sortBy) => {
+  return {
+    type: actionType.SORT_ARTIST_DATA,
+    payload: sortBy,
+  };
+};
+
+const fetchartists = (sortby) => async (dispatch) => {
   dispatch(fetchArtistDataLoading());
   try {
     const res = await fetch("https://jsong-backend.herokuapp.com/api/artists/");
     const data = await res.json();
     dispatch(fetchArtistDataSuccess(data));
+    dispatch(sortArtistData(sortby));
   } catch (error) {
     dispatch(fetchArtistDataFailure(error));
   }
