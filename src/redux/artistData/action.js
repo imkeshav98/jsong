@@ -3,7 +3,7 @@ import { actionType } from "./actionType";
 const fetchArtistDataSuccess = (artistData) => {
   return {
     type: actionType.FETCH_ARTIST_DATA_SUCCESS,
-    artistData,
+    payload: artistData,
   };
 };
 
@@ -28,7 +28,7 @@ const fetchArtistDataLoading = () => {
 const fetchartists = () => async (dispatch) => {
   dispatch(fetchArtistDataLoading());
   try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const res = await fetch("https://jsong-backend.herokuapp.com/api/artists/");
     const data = await res.json();
     dispatch(fetchArtistDataSuccess(data));
   } catch (error) {

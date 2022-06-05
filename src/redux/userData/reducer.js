@@ -6,12 +6,12 @@ const init = {
   isLoading: false,
 };
 
-export const userReducer = (state = init, action) => {
-  switch (action.type) {
+export const userReducer = (state = init, { type, payload }) => {
+  switch (type) {
     case actionType.FETCH_USER_DATA_SUCCESS:
       return {
         ...state,
-        userData: action.userData,
+        userData: payload,
         isError: false,
         isLoading: false,
       };

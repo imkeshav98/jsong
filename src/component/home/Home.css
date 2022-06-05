@@ -1,0 +1,57 @@
+.home__container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+}
+.table-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.table-top__title {
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.topSongs_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid var(--bg-color);
+}
+.topSongs_table th {
+    background-color: var(--bg-color);
+}
+.topSongs_table th,
+.topSongs_table td {
+    border: 1px solid var(--bg-color);
+    padding: 1rem 2rem;
+
+}
+
+.topSongs_table__img {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+.fa-star {
+    color: var(--bg-color);
+    font-size: 2rem;
+    margin: 0rem 0.4rem;
+}
+
+.topSongs__rating {
+    direction: rtl;
+}
+
+.fa-star:hover ,
+.fa-star:hover ~ .fa-star {
+    color: var(--main-color);
+}
+
+.star_checked {
+    color: var(--main-color);
+}

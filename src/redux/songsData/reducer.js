@@ -6,34 +6,44 @@ const init = {
   isLoading: false,
 };
 
-export const songsReducer = (state = init, action) => {
-  switch (action.type) {
+export const songsReducer = (state = init, { type, payload }) => {
+  switch (type) {
     case actionType.FETCH_SONG_DATA_SUCCESS:
       return {
-        ...state,
-        songsData: action.songsData,
-        isError: false,
-        isLoading: false,
+        ...state, // keep the old state
+        songsData: payload, // payload is the data from the server
+        isError: false, // reset error
+        isLoading: false, // reset loading
       };
     case actionType.FETCH_SONG_DATA_FAILURE:
       return {
         ...state,
-        isError: true,
-        isLoading: false,
+        isError: true, // set error to true
+        isLoading: false, // reset loading
       };
     case actionType.FETCH_SONG_DATA_RESET:
       return {
         ...state,
-        songsData: [],
-        isError: false,
-        isLoading: false,
+        songsData: [], // reset songsData
+        isError: false, // reset error
+        isLoading: false, // reset loading
       };
     case actionType.FETCH_SONG_DATA_LOADING:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true, // set loading to true
+      };
+
+    case actionType.SORT_SONG_DATA:
+      return {
+        ...state,
+        songsData: [...state.songsData].sort((a, b) => {
+          if (payload === "rating") {
+            return b.rating - a.rating; // sort by rating
+          }
+        }),
       };
     default:
-      return state;
+      return state; // return the old state
   }
 };

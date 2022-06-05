@@ -3,7 +3,7 @@ import { actionType } from "./actionType";
 const fechUserDataSuccess = (userData) => {
   return {
     type: actionType.FETCH_USER_DATA_SUCCESS,
-    userData,
+    payload: userData,
   };
 };
 

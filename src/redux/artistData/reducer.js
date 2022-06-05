@@ -6,12 +6,12 @@ const init = {
   isLoading: false,
 };
 
-export const artistReducer = (state = init, action) => {
-  switch (action.type) {
+export const artistReducer = (state = init, { type, payload }) => {
+  switch (type) {
     case actionType.FETCH_ARTIST_DATA_SUCCESS:
       return {
         ...state,
-        artistData: action.artistData,
+        artistData: payload,
         isError: false,
         isLoading: false,
       };
