@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import logo from "../../assets/JSONG.png";
+import logo from "../../../assets/JSONG.png";
 
 export const Navbar = () => {
   return (

@@ -1,19 +1,10 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchartists } from "../../redux/artistData/action";
-import { fetchSongs } from "../../redux/songsData/action";
 import { Ratings } from "../global/ratings/Ratings";
 import "./Home.css";
 
 export const Home = () => {
   const songs = useSelector((state) => state.songs.songsData);
   const artists = useSelector((state) => state.artists.artistsData);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchSongs("rating")); // fetching songs by rating
-    dispatch(fetchartists("rating")); // fetching artists by rating
-  }, []);
 
   return (
     <section className="home">
@@ -46,9 +37,12 @@ export const Home = () => {
                   </td>
                   <td>{song.name}</td>
                   <td>{song.dor}</td>
-                  <td>
+                  <td className="songs_table__artists">
                     {song.artists.map((artist) => (
-                      <p key={artist}>{artist}</p>
+                      <p key={artist._id}>
+                        {artist.name}
+                        {","}
+                      </p>
                     ))}
                   </td>
                   <td>{song.rating}</td>
@@ -78,12 +72,14 @@ export const Home = () => {
                   <td>{artist.dob}</td>
                   <td>{artist.avgRating}</td>
                   <td className="artist_table__songs">
-                    {artist.songs.map((song) => (
-                      <p key={song}>
-                        {song}
-                        {", "}
-                      </p>
-                    ))}
+                    {artist.songs.length > 0
+                      ? artist.songs.map((song) => (
+                          <p key={song._id}>
+                            {song.name}
+                            {", "}
+                          </p>
+                        ))
+                      : "No Songs"}
                   </td>
                 </tr>
               ))}

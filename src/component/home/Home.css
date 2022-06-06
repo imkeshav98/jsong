@@ -25,7 +25,6 @@
 .topArtists_table {
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid var(--bg-color);
     width: 100%;
 }
 
@@ -40,7 +39,6 @@
 .topArtists_table td {
     border: 1px solid var(--bg-color);
     padding: 1rem 2rem;
-
 }
 
 .topSongs_table__img {
@@ -49,13 +47,15 @@
     border-radius: 50%;
 }
 
-.artist_table__songs {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+.home__container .songs_table__artists p ,
+.home__container .artist_table__songs p {
+    display: inline-block;
+    margin: 0.5rem;
 }
 
+.home__container tbody td {
+    height: 10.25rem;
+}
 .fa-star {
     color: var(--bg-color);
     font-size: 2rem;

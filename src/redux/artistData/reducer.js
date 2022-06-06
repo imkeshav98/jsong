@@ -42,6 +42,31 @@ export const artistReducer = (state = init, { type, payload }) => {
           }
         }),
       };
+    case actionType.POST_NEW_ARTIST_SUCCESS:
+      return {
+        ...state,
+        artistsData: [...state.artistsData, payload],
+        isError: false,
+        isLoading: false,
+      };
+    case actionType.POST_NEW_ARTIST_FAILURE:
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    case actionType.POST_NEW_ARTIST_RESET:
+      return {
+        ...state,
+        artistsData: [],
+        isError: false,
+        isLoading: false,
+      };
+    case actionType.POST_NEW_ARTIST_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
     default:
       return state;
   }

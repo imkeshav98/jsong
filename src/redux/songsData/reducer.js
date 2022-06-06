@@ -43,6 +43,31 @@ export const songsReducer = (state = init, { type, payload }) => {
           }
         }),
       };
+
+    case actionType.POST_NEW_SONG_SUCCESS:
+      return {
+        ...state,
+        songsData: [...state.songsData, payload], // add new song to songsData
+        isError: false, // reset error
+        isLoading: false, // reset loading
+      };
+    case actionType.POST_NEW_SONG_FAILURE:
+      return {
+        ...state,
+        isError: true, // set error to true
+        isLoading: false, // reset loading
+      };
+    case actionType.POST_NEW_SONG_RESET:
+      return {
+        ...state,
+        isError: false, // reset error
+        isLoading: false, // reset loading
+      };
+    case actionType.POST_NEW_SONG_LOADING:
+      return {
+        ...state,
+        isLoading: true, // set loading to true
+      };
     default:
       return state; // return the old state
   }
