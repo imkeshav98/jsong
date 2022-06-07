@@ -10,7 +10,7 @@ function Songs() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    setSongs(songdata.reverse());
+    setSongs(songdata);
   }, [songdata]);
 
   useEffect(() => {
