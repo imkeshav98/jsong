@@ -1,10 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Ratings } from "../global/ratings/Ratings";
 import "./Home.css";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
   const songs = useSelector((state) => state.songs.songsData);
   const artists = useSelector((state) => state.artists.artistsData);
+
+  const [sortedSongs, setSortedSongs] = useState([]);
+  const [sortedArtists, setSortedArtists] = useState([]);
+
+  useEffect(() => {
+    const sortedSongs = songs.sort((a, b) => b.rating - a.rating);
+    const sortedArtists = artists.sort((a, b) => b.avgRating - a.avgRating);
+
+    setSortedSongs(sortedSongs);
+    setSortedArtists(sortedArtists);
+  }, [songs, artists]);
 
   return (
     <section className="home">
@@ -12,7 +25,9 @@ export const Home = () => {
         <div className="topSongs_container">
           <div className=" table-top">
             <h2 className="table-top__title">Top 10 Songs</h2>
-            <button className="addSongBtn">+ Add Song</button>
+            <Link to="/add-song">
+              <button className="addSongBtn">+ Add Song</button>
+            </Link>
           </div>
           <table className="topSongs_table">
             <thead>
@@ -26,7 +41,7 @@ export const Home = () => {
               </tr>
             </thead>
             <tbody>
-              {songs.map((song) => (
+              {sortedSongs.map((song) => (
                 <tr key={song._id}>
                   <td>
                     <img
@@ -46,7 +61,7 @@ export const Home = () => {
                     ))}
                   </td>
                   <td>{song.rating}</td>
-                  <td>{<Ratings />}</td>
+                  <td>{<Ratings songId={song._id} />}</td>
                 </tr>
               ))}
             </tbody>
@@ -66,7 +81,7 @@ export const Home = () => {
               </tr>
             </thead>
             <tbody>
-              {artists.map((artist) => (
+              {sortedArtists.map((artist) => (
                 <tr key={artist._id}>
                   <td>{artist.name}</td>
                   <td>{artist.dob}</td>

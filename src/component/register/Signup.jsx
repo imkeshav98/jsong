@@ -1,16 +1,63 @@
 import "./Signup.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userRegister } from "../../redux/userData/action";
 
 export const Signup = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userStatus = useSelector((state) => state.user.isUserLoggedIn);
+  const error = useSelector((state) => state.user.error);
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    console.log(userStatus);
+    if (userStatus) {
+      navigate("/");
+    }
+  }, [userStatus]);
+
+  function handleUserData(e) {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+    dispatch(userRegister(userData));
+  }
+
   return (
     <section className="signup">
       <div className="signup__container">
         <h2>Sign Up</h2>
-        <input type="text" placeholder="Enter Name" />
-        <input type="email" placeholder="Enter Email" />
-        <input type="password" placeholder="Enter Password" />
-        <button>signup</button>
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            name="name"
+            onChange={handleUserData}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter Email"
+            name="email"
+            onChange={handleUserData}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            onChange={handleUserData}
+            required
+          />
+          <input type="submit" id="signupbutton" />
+        </form>
         <p>
-          Already have an account? <a href="/">Sign In</a>
+          Already have an account? <Link to="/login">Sign In</Link>
         </p>
       </div>
     </section>

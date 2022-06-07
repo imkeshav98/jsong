@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewSong } from "../../redux/songsData/action";
 import { postNewArtist } from "../../redux/artistData/action";
+import { useNavigate } from "react-router-dom";
 
 export const AddSong = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const artists = useSelector((state) => state.artists.artistsData);
   const [isVisible, setIsVisible] = useState(false);
   const [artist, setArtist] = useState([]);
@@ -59,6 +61,7 @@ export const AddSong = () => {
     e.preventDefault();
     dispatch(postNewSong(formData));
     e.target.reset();
+    navigate("/");
   }
 
   function submitNewArtist(e) {
@@ -83,6 +86,7 @@ export const AddSong = () => {
               id="name"
               placeholder="Enter song name"
               onChange={handleForm}
+              required
             />
           </div>
           <div className="addsong_form_section">
@@ -91,10 +95,11 @@ export const AddSong = () => {
             </label>
             <input
               className="addsong_input"
-              type="string"
+              type="date"
               id="dor"
               placeholder="dd/mm/yyyy"
               onChange={handleForm}
+              required
             />
           </div>
           <div className="addsong_form_section">
@@ -107,6 +112,7 @@ export const AddSong = () => {
               id="cover"
               placeholder="Enter image url"
               onChange={handleForm}
+              required
             />
           </div>
           <div className="addsong_form_section">
@@ -119,6 +125,7 @@ export const AddSong = () => {
               id="spotifyUrl"
               placeholder="Enter Spotify url"
               onChange={handleForm}
+              required
             />
           </div>
           <div className="addsong_form_section_artist">
@@ -138,6 +145,7 @@ export const AddSong = () => {
                   <div className="artist_section_select" key={i}>
                     <p>{artist.name}</p>
                     <input
+                      className="artist_section_checkbox"
                       type="checkbox"
                       name={artist._id}
                       id={artist._id}
@@ -149,8 +157,13 @@ export const AddSong = () => {
             </div>
           </div>
           <div className="addsong_form_bottom_section">
-            <div>
-              <button className="addsong_form_cancelbtn">Cancel</button>
+            <div className="addsong_form_buttons_section">
+              <input
+                type="button"
+                value="Cancel"
+                className="addsong_form_cancelbtn"
+                onClick={() => navigate("/")}
+              />
               <input type="submit" className="addsong_form_submitbtn" />
             </div>
             <p
@@ -217,7 +230,14 @@ export const AddSong = () => {
                 />
               </div>
               <div className="addartist_bottomdiv">
-                <button className="addartist_cancelbtn">Cancel</button>
+                <input
+                  type="button"
+                  value="Cancel"
+                  className="addartist_cancelbtn"
+                  onClick={() => {
+                    setIsVisible(false);
+                  }}
+                />
                 <input type="submit" className="addartist_submitbtn" />
               </div>
             </form>

@@ -18,7 +18,7 @@ export const songsReducer = (state = init, { type, payload }) => {
     case actionType.FETCH_SONG_DATA_FAILURE:
       return {
         ...state,
-        isError: true, // set error to true
+        isError: payload, // payload is the error from the server
         isLoading: false, // reset loading
       };
     case actionType.FETCH_SONG_DATA_RESET:
@@ -54,7 +54,7 @@ export const songsReducer = (state = init, { type, payload }) => {
     case actionType.POST_NEW_SONG_FAILURE:
       return {
         ...state,
-        isError: true, // set error to true
+        isError: payload, // payload is the error from the server
         isLoading: false, // reset loading
       };
     case actionType.POST_NEW_SONG_RESET:
@@ -64,6 +64,32 @@ export const songsReducer = (state = init, { type, payload }) => {
         isLoading: false, // reset loading
       };
     case actionType.POST_NEW_SONG_LOADING:
+      return {
+        ...state,
+        isLoading: true, // set loading to true
+      };
+    case actionType.RATE_SONG_SUCCESS:
+      return {
+        ...state,
+        songsData: [...state.songsData].map((song) => {
+          if (song._id === payload._id) {
+            let newSong = { ...song };
+            newSong.rating = payload.rating;
+            return newSong;
+          }
+          return song; // keep the song
+        }),
+        isError: false, // reset error
+        isLoading: false, // reset loading
+      };
+    case actionType.RATE_SONG_FAILURE:
+      return {
+        ...state,
+        isError: payload, // payload is the error from the server
+        isLoading: false, // reset loading
+      };
+
+    case actionType.RATE_SONG_LOADING:
       return {
         ...state,
         isLoading: true, // set loading to true

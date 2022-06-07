@@ -4,13 +4,13 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    max-width: 400px;
+    max-width: 350px;
     margin: auto;
     height: 80vh;
 }
 
 .login__container input{
-    width: 90%;
+    width: 100%;
     height: 4rem;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -22,8 +22,8 @@
     color: var(--main-color);
 }
 
-.login__container button {
-    width: 90%;
+.login__container #loginbutton {
+    width: 100%;
     height: 4rem;
     padding: 0.5rem;
     border: none;

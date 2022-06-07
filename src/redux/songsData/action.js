@@ -1,3 +1,4 @@
+import { fetchartists } from "../artistData/action";
 import { actionType } from "./actionType";
 
 const fetchSongDataSucess = (songData) => {
@@ -12,7 +13,7 @@ const fetchSongDataFailure = (error) => {
   // set error to true
   return {
     type: actionType.FETCH_SONG_DATA_FAILURE,
-    error,
+    payload: error,
   };
 };
 
@@ -50,7 +51,7 @@ const postNewSongFailure = (error) => {
   // set error to true
   return {
     type: actionType.POST_NEW_SONG_FAILURE,
-    error,
+    payload: error,
   };
 };
 
@@ -58,6 +59,29 @@ const postNewSongLoading = () => {
   // set loading to true
   return {
     type: actionType.POST_NEW_SONG_LOADING,
+  };
+};
+
+const rateSongSuccess = (songData) => {
+  // set data to songsData
+  return {
+    type: actionType.RATE_SONG_SUCCESS,
+    payload: songData, // data from the server
+  };
+};
+
+const rateSongFailure = (error) => {
+  // set error to true
+  return {
+    type: actionType.RATE_SONG_FAILURE,
+    payload: error,
+  };
+};
+
+const rateSongLoading = () => {
+  // set loading to true
+  return {
+    type: actionType.RATE_SONG_LOADING,
   };
 };
 
@@ -76,21 +100,56 @@ const postNewSong = (songData) => async (dispatch) => {
       }
     );
     const data = await response.json();
+    if (data.message) {
+      dispatch(postNewSongFailure(data.message));
+    }
     dispatch(postNewSongSuccess(data));
+    dispatch(fetchartists());
   } catch (error) {
     dispatch(postNewSongFailure(error));
   }
 };
 
-const fetchSongs = (sortBy) => async (dispatch) => {
+const fetchSongs = () => async (dispatch) => {
   dispatch(fetchSongDataLoading()); // set loading to true
   try {
     const res = await fetch("https://jsong-backend.herokuapp.com/api/songs/"); // fetching data from the server
     const data = await res.json();
-    dispatch(fetchSongDataSucess(data));
-    dispatch(sortSongData(sortBy)); // sort data
+    if (data.message) {
+      dispatch(fetchSongDataFailure(data.message));
+    } else {
+      dispatch(fetchSongDataSucess(data));
+    }
   } catch (error) {
     dispatch(fetchSongDataFailure(error)); // set error to true
+  }
+};
+
+const rateSong = (songData) => async (dispatch) => {
+  dispatch(rateSongLoading()); // set loading to true
+  try {
+    const res = await fetch(
+      "https://jsong-backend.herokuapp.com/api/songs/rating",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(songData),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          dispatch(rateSongFailure(data.message));
+        } else {
+          dispatch(rateSongSuccess(data));
+          dispatch(fetchartists());
+          console.log(data);
+        }
+      });
+  } catch (error) {
+    dispatch(rateSongFailure(error));
   }
 };
 
@@ -105,4 +164,8 @@ export {
   postNewSongSuccess,
   postNewSongFailure,
   postNewSongLoading,
+  rateSong,
+  rateSongSuccess,
+  rateSongFailure,
+  rateSongLoading,
 };

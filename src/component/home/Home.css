@@ -56,21 +56,3 @@
 .home__container tbody td {
     height: 10.25rem;
 }
-.fa-star {
-    color: var(--bg-color);
-    font-size: 2rem;
-    margin: 0rem 0.4rem;
-}
-
-.topSongs__rating {
-    direction: rtl;
-}
-
-.fa-star:hover ,
-.fa-star:hover ~ .fa-star {
-    color: var(--main-color);
-}
-
-.star_checked {
-    color: var(--main-color);
-}

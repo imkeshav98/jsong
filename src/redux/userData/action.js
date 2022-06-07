@@ -1,50 +1,131 @@
 import { actionType } from "./actionType";
 
-const fechUserDataSuccess = (userData) => {
+const userLoginLoading = () => {
   return {
-    type: actionType.FETCH_USER_DATA_SUCCESS,
+    type: actionType.USER_LOGIN_LOADING,
+  };
+};
+
+const userLoginSuccess = (userData) => {
+  return {
+    type: actionType.USER_LOGIN_SUCCESS,
     payload: userData,
   };
 };
 
-const fechUserDataFailure = () => {
+const userLoginFailure = (error) => {
   return {
-    type: actionType.FETCH_USER_DATA_FAILURE,
+    type: actionType.USER_LOGIN_FAILURE,
+    payload: error,
   };
 };
 
-const fechUserDataReset = () => {
+const userLoginReset = () => {
   return {
-    type: actionType.FETCH_USER_DATA_RESET,
+    type: actionType.USER_LOGIN_RESET,
   };
 };
 
-const fechUserDataLoading = () => {
+const userRegisterLoading = () => {
   return {
-    type: actionType.FETCH_USER_DATA_LOADING,
+    type: actionType.USER_REGISTER_LOADING,
   };
 };
 
-const fechUserData = (userId) => {
+const userRegisterSuccess = (userData) => {
+  return {
+    type: actionType.USER_REGISTER_SUCCESS,
+    payload: userData,
+  };
+};
+
+const userRegisterFailure = (error) => {
+  return {
+    type: actionType.USER_REGISTER_FAILURE,
+    payload: error,
+  };
+};
+
+const userRegisterReset = () => {
+  return {
+    type: actionType.USER_REGISTER_RESET,
+  };
+};
+
+const userLogout = () => {
+  return {
+    type: actionType.USER_LOGOUT,
+  };
+};
+
+const userLogin = (userData) => {
   return (dispatch) => {
-    dispatch(fechUserDataLoading());
-    fetch(`https://api.spotify.com/v1/users/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
+    dispatch(userLoginLoading());
+    fetch("https://jsong-backend.herokuapp.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          dispatch(userLoginFailure(data.message));
+        } else {
+          dispatch(userLoginSuccess(data));
+          localStorage.setItem("token", data.token);
         }
-        return response;
       })
-      .then((response) => response.json())
-      .then((userData) => dispatch(fechUserDataSuccess(userData)))
-      .catch(() => dispatch(fechUserDataFailure()));
+      .catch((err) => {
+        dispatch(userLoginFailure(err));
+      });
+  };
+};
+
+const userRegister = (userData) => {
+  return (dispatch) => {
+    dispatch(userRegisterLoading());
+    fetch("https://jsong-backend.herokuapp.com/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          dispatch(userRegisterFailure(data.message));
+        } else {
+          dispatch(userRegisterSuccess(data));
+          localStorage.setItem("token", data.token);
+        }
+      })
+      .catch((err) => {
+        dispatch(userRegisterFailure(err));
+      });
+  };
+};
+
+const userLogoutAction = () => {
+  return (dispatch) => {
+    dispatch(userLogout());
+    localStorage.removeItem("token");
   };
 };
 
 export {
-  fechUserDataSuccess,
-  fechUserDataFailure,
-  fechUserDataReset,
-  fechUserDataLoading,
-  fechUserData,
+  userLogin,
+  userLoginLoading,
+  userLoginSuccess,
+  userLoginFailure,
+  userLoginReset,
+  userLogout,
+  userRegister,
+  userRegisterLoading,
+  userRegisterSuccess,
+  userRegisterFailure,
+  userRegisterReset,
+  userLogoutAction,
 };

@@ -12,8 +12,9 @@ export const AllRoutes = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSongs("rating")); // fetching songs by rating
-    dispatch(fetchartists("rating")); // fetching artists by rating
+    dispatch(fetchSongs()); // fetching songs by rating
+    dispatch(fetchartists()); // fetching artists by rating
+    return () => {};
   }, []);
 
   return (
