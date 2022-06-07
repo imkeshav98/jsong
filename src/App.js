@@ -1,3 +1,4 @@
+import { Footer } from "./component/footer/Footer";
 import { Navbar } from "./component/global/navbar/Navbar";
 import { AllRoutes } from "./routes/Routes";
 
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Navbar />
       <AllRoutes />
+      <Footer />
     </div>
   );
 }

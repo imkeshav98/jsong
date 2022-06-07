@@ -58,6 +58,20 @@ const userLogout = () => {
   };
 };
 
+const userTokenSuccess = (data) => {
+  return {
+    type: actionType.USER_TOKEN_SUCCESS,
+    payload: data,
+  };
+};
+
+const userTokenFailure = (message) => {
+  return {
+    type: actionType.USER_TOKEN_FAILURE,
+    payload: message,
+  };
+};
+
 const userLogin = (userData) => {
   return (dispatch) => {
     dispatch(userLoginLoading());
@@ -115,6 +129,34 @@ const userLogoutAction = () => {
   };
 };
 
+const userToken = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("https://jsong-backend.herokuapp.com/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            dispatch(userTokenFailure(data.message));
+          } else {
+            dispatch(userTokenSuccess(data.user));
+          }
+        })
+        .catch((err) => {
+          dispatch(userTokenFailure());
+        });
+    } else {
+      dispatch(userTokenFailure());
+    }
+  };
+};
+
 export {
   userLogin,
   userLoginLoading,
@@ -128,4 +170,7 @@ export {
   userRegisterFailure,
   userRegisterReset,
   userLogoutAction,
+  userToken,
+  userTokenSuccess,
+  userTokenFailure,
 };

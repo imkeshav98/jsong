@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Ratings } from "../global/ratings/Ratings";
 import "./Home.css";
 import { Link } from "react-router-dom";
@@ -12,11 +12,20 @@ export const Home = () => {
   const [sortedArtists, setSortedArtists] = useState([]);
 
   useEffect(() => {
-    const sortedSongs = songs.sort((a, b) => b.rating - a.rating);
-    const sortedArtists = artists.sort((a, b) => b.avgRating - a.avgRating);
+    const sortedSongs = [...songs].sort((a, b) => b.rating - a.rating);
+    const sortedArtists = [...artists].sort(
+      (a, b) => b.avgRating - a.avgRating
+    );
 
-    setSortedSongs(sortedSongs);
-    setSortedArtists(sortedArtists);
+    let start = 0;
+    let songend = sortedSongs.length <= 10 ? sortedSongs.length : 10;
+    let artistend = sortedArtists.length <= 10 ? sortedArtists.length : 10;
+
+    let top10songs = sortedSongs.slice(start, songend);
+    let top10artists = sortedArtists.slice(start, artistend);
+
+    setSortedSongs(top10songs);
+    setSortedArtists(top10artists);
   }, [songs, artists]);
 
   return (
@@ -25,9 +34,14 @@ export const Home = () => {
         <div className="topSongs_container">
           <div className=" table-top">
             <h2 className="table-top__title">Top 10 Songs</h2>
-            <Link to="/add-song">
-              <button className="addSongBtn">+ Add Song</button>
-            </Link>
+            <div>
+              <Link to="/add-song">
+                <button>+ Add Song</button>
+              </Link>
+              <Link to="/songs">
+                <button>All Songs</button>
+              </Link>
+            </div>
           </div>
           <table className="topSongs_table">
             <thead>
@@ -44,11 +58,13 @@ export const Home = () => {
               {sortedSongs.map((song) => (
                 <tr key={song._id}>
                   <td>
-                    <img
-                      src={song.cover}
-                      alt="artwork"
-                      className="topSongs_table__img"
-                    />
+                    <a href={song.spotifyUrl} target="_blank">
+                      <img
+                        src={song.cover}
+                        alt="artwork"
+                        className="topSongs_table__img"
+                      />
+                    </a>
                   </td>
                   <td>{song.name}</td>
                   <td>{song.dor}</td>

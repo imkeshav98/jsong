@@ -1,0 +1,8 @@
+.searchSongs {
+    width: 20rem;
+    height: 4rem;
+    padding: 1rem;
+    border: 1px solid var(--main-color);
+    background-color: var(--territory-color);
+    border-radius: 5px;
+}

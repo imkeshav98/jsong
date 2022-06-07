@@ -53,7 +53,7 @@ export const Ratings = ({ songId }) => {
               className="star"
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(0)}
-              color={ratingValue <= (hover || rating) ? "#5278c7" : "#b4c5e7"}
+              color={ratingValue <= (hover || rating) ? "#4D77FF" : "#adc7f1"}
             />
           </label>
         );

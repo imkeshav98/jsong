@@ -2,6 +2,7 @@
     max-width: 500px;
     margin: 5rem auto;
     padding: 0rem 1rem;
+    min-height: 90vh;
 }
 
 .addsong_title ,
@@ -151,7 +152,7 @@
     max-width: 500px;
     max-height: 530px;
     padding: 0rem 1rem;
-    background-color: #e6ebf7;
+    background-color: #ECF2F9;
     border: 1px solid var(--bg-color);
     padding: 2rem 3rem;
     border-radius: 7px;

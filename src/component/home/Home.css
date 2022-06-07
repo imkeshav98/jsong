@@ -4,6 +4,7 @@
     margin: 0 auto;
     padding: 1rem;
     text-align: center;
+    min-height: 90vh;
 }
 .table-top {
     display: flex;
@@ -32,6 +33,7 @@
 .topArtists_table th {
     background-color: var(--bg-color);
     text-align: center;
+    color: var(--white-color);
 }
 .topSongs_table th,
 .topArtists_table th,
