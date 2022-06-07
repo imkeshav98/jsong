@@ -1,5 +1,6 @@
 import { fetchartists } from "../artistData/action";
 import { actionType } from "./actionType";
+import { loadingStart, loadingEnd } from "../loading/action";
 
 const fetchSongDataSucess = (songData) => {
   // set data to songsData
@@ -88,6 +89,7 @@ const rateSongLoading = () => {
 const postNewSong = (songData) => async (dispatch) => {
   // set loading to true
   dispatch(postNewSongLoading());
+  dispatch(loadingStart());
   try {
     const response = await fetch(
       "https://jsong-backend.herokuapp.com/api/songs/",
@@ -102,31 +104,40 @@ const postNewSong = (songData) => async (dispatch) => {
     const data = await response.json();
     if (data.message) {
       dispatch(postNewSongFailure(data.message));
+      dispatch(loadingEnd());
+    } else {
+      dispatch(postNewSongSuccess(data));
+      dispatch(fetchartists());
+      dispatch(loadingEnd());
     }
-    dispatch(postNewSongSuccess(data));
-    dispatch(fetchartists());
   } catch (error) {
     dispatch(postNewSongFailure(error));
+    dispatch(loadingEnd());
   }
 };
 
 const fetchSongs = () => async (dispatch) => {
   dispatch(fetchSongDataLoading()); // set loading to true
+  dispatch(loadingStart());
   try {
     const res = await fetch("https://jsong-backend.herokuapp.com/api/songs/"); // fetching data from the server
     const data = await res.json();
     if (data.message) {
       dispatch(fetchSongDataFailure(data.message));
+      dispatch(loadingEnd());
     } else {
       dispatch(fetchSongDataSucess(data));
+      dispatch(loadingEnd());
     }
   } catch (error) {
     dispatch(fetchSongDataFailure(error)); // set error to true
+    dispatch(loadingEnd());
   }
 };
 
 const rateSong = (songData) => async (dispatch) => {
   dispatch(rateSongLoading()); // set loading to true
+  dispatch(loadingStart());
   try {
     const res = await fetch(
       "https://jsong-backend.herokuapp.com/api/songs/rating",
@@ -142,14 +153,16 @@ const rateSong = (songData) => async (dispatch) => {
       .then((data) => {
         if (data.message) {
           dispatch(rateSongFailure(data.message));
+          dispatch(loadingEnd());
         } else {
           dispatch(rateSongSuccess(data));
           dispatch(fetchartists());
-          console.log(data);
+          dispatch(loadingEnd());
         }
       });
   } catch (error) {
     dispatch(rateSongFailure(error));
+    dispatch(loadingEnd());
   }
 };
 

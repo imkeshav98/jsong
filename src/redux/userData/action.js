@@ -1,4 +1,5 @@
 import { actionType } from "./actionType";
+import { loadingStart, loadingEnd } from "../loading/action";
 
 const userLoginLoading = () => {
   return {
@@ -75,6 +76,7 @@ const userTokenFailure = (message) => {
 const userLogin = (userData) => {
   return (dispatch) => {
     dispatch(userLoginLoading());
+    dispatch(loadingStart());
     fetch("https://jsong-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
@@ -86,13 +88,16 @@ const userLogin = (userData) => {
       .then((data) => {
         if (data.message) {
           dispatch(userLoginFailure(data.message));
+          dispatch(loadingEnd());
         } else {
           dispatch(userLoginSuccess(data));
           localStorage.setItem("token", data.token);
+          dispatch(loadingEnd());
         }
       })
       .catch((err) => {
         dispatch(userLoginFailure(err));
+        dispatch(loadingEnd());
       });
   };
 };
@@ -100,6 +105,7 @@ const userLogin = (userData) => {
 const userRegister = (userData) => {
   return (dispatch) => {
     dispatch(userRegisterLoading());
+    dispatch(loadingStart());
     fetch("https://jsong-backend.herokuapp.com/register", {
       method: "POST",
       headers: {
@@ -111,13 +117,16 @@ const userRegister = (userData) => {
       .then((data) => {
         if (data.message) {
           dispatch(userRegisterFailure(data.message));
+          dispatch(loadingEnd());
         } else {
           dispatch(userRegisterSuccess(data));
           localStorage.setItem("token", data.token);
+          dispatch(loadingEnd());
         }
       })
       .catch((err) => {
         dispatch(userRegisterFailure(err));
+        dispatch(loadingEnd());
       });
   };
 };
