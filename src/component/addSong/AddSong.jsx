@@ -115,19 +115,6 @@ export const AddSong = () => {
               required
             />
           </div>
-          <div className="addsong_form_section">
-            <label className="addsong_label" htmlFor="song-spotifyurl">
-              Spotify URL
-            </label>
-            <input
-              className="addsong_input"
-              type="url"
-              id="spotifyUrl"
-              placeholder="Enter Spotify url"
-              onChange={handleForm}
-              required
-            />
-          </div>
           <div className="addsong_form_section_artist">
             <label className="addsong_label" htmlFor="song-artists">
               Artists
