@@ -58,11 +58,17 @@ export const Home = () => {
               {sortedSongs.map((song) => (
                 <tr key={song._id}>
                   <td>
-                    <img
-                      src={song.cover}
-                      alt="artwork"
-                      className="topSongs_table__img"
-                    />
+                    <a
+                      href={`https://open.spotify.com/search/${song.name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={song.cover}
+                        alt="artwork"
+                        className="topSongs_table__img"
+                      />
+                    </a>
                   </td>
                   <td>{song.name}</td>
                   <td>{song.dor}</td>

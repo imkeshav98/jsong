@@ -8,13 +8,13 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userStatus = useSelector((state) => state.user.isUserLoggedIn);
-  const error = useSelector((state) => state.user.error);
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
     if (userStatus) {
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userStatus]);
 
   function handleUserData(e) {

@@ -28,6 +28,7 @@ export const AddSong = () => {
     });
 
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedArtist]);
 
   function searchArtist(e) {

@@ -38,9 +38,11 @@ export const songsReducer = (state = init, { type, payload }) => {
       return {
         ...state,
         songsData: [...state.songsData].sort((a, b) => {
+          let response;
           if (payload === "rating") {
-            return b.rating - a.rating; // sort by rating
+            response = b.rating - a.rating; // sort by rating
           }
+          return response;
         }),
       };
 

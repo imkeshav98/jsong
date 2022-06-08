@@ -24,6 +24,7 @@ export const Ratings = ({ songId }) => {
       });
     }
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rating]);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export const Ratings = ({ songId }) => {
       dispatch(rateSong(data));
     }
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   function handleRating(e) {

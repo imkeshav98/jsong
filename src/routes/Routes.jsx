@@ -18,6 +18,7 @@ export const AllRoutes = () => {
     dispatch(fetchSongs()); // fetching songs
     dispatch(fetchartists()); // fetching artists
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export const AllRoutes = () => {
       dispatch(userToken());
     }
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

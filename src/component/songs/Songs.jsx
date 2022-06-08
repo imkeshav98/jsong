@@ -23,6 +23,7 @@ function Songs() {
     );
     setSongs(filteredSongs);
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const handleSearch = (e) => {

@@ -148,18 +148,16 @@ const rateSong = (songData) => async (dispatch) => {
         },
         body: JSON.stringify(songData),
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          dispatch(rateSongFailure(data.message));
-          dispatch(loadingEnd());
-        } else {
-          dispatch(rateSongSuccess(data));
-          dispatch(fetchartists());
-          dispatch(loadingEnd());
-        }
-      });
+    );
+    const data = await res.json();
+    if (data.message) {
+      dispatch(rateSongFailure(data.message));
+      dispatch(loadingEnd());
+    } else {
+      dispatch(rateSongSuccess(data));
+      dispatch(fetchartists());
+      dispatch(loadingEnd());
+    }
   } catch (error) {
     dispatch(rateSongFailure(error));
     dispatch(loadingEnd());

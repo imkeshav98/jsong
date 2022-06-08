@@ -37,9 +37,11 @@ export const artistReducer = (state = init, { type, payload }) => {
       return {
         ...state,
         artistsData: state.artistsData.sort((a, b) => {
+          let response;
           if (payload === "rating") {
-            return b.avgRating - a.avgRating;
+            response = b.avgRating - a.avgRating;
           }
+          return response;
         }),
       };
     case actionType.POST_NEW_ARTIST_SUCCESS:
