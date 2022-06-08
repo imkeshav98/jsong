@@ -12,13 +12,10 @@ JSONG is for music lovers. Users can add their favorite songs to the website and
 
 ## Tech Stack
 
-**Client:** React, Redux, CSS, Javascript
-
-**Server:** Node, Express, MongoDb
-
-**Front-end Deployment:** Vercel
-
-**Back-end Deployment:** Heroku
+- **Client:** React, Redux, CSS, Javascript
+- **Server:** Node, Express, MongoDb
+- **Front-end Deployment:** Vercel
+- **Back-end Deployment:** Heroku
 
 # Features:
 
