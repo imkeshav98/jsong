@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+<img src="https://i.postimg.cc/qqJDvNYN/JSONG-Banner.jpg" alt="Logo" width="100%">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# JSONG : Make your favourite songs top the chart
 
-## Available Scripts
+JSONG is for music lovers. Users can add their favorite songs to the website and rate songs already on the website. JSONG has a Top 10 Songs Chart where you can see 10 of the most rated songs. So what are you waiting for? Add the best music from your playlist and see if it can reach the Top 10 Songs Chart.
 
-In the project directory, you can run:
+# Useful Links:
 
-### `npm start`
+- Demo : https://jsong-web.vercel.app/
+- Backend Repo: https://github.com/imkeshav98/jsong-API
+- Frontend Repo: https://github.com/imkeshav98/jsong
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Client:** React, Redux, CSS, Javascript
+- **Server:** Node, Express, MongoDb
+- **Front-end Deployment:** Vercel
+- **Back-end Deployment:** Heroku
 
-### `npm test`
+# Features:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User can register and login with his account
+- Add their favourite songs to the website
+- Rate songs that are published by other users
+- Top 10 songs by rating chart
+- Top 10 artist by avg. rating of all his songs
 
-### `npm run build`
+# Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://i.postimg.cc/XNC3tq6n/jsong1.jpg" alt="Logo" width="100%">
+<img src="https://i.postimg.cc/hGfNxZSK/jsong2.jpg" alt="Logo" width="100%">
+<img src="https://i.postimg.cc/VNppF96n/jsong3.jpg" alt="Logo" width="100%">
+<img src="https://i.postimg.cc/brj57z1v/jsong4.jpg" alt="Logo" width="100%">
+<img src="https://i.postimg.cc/cH3jkKgj/jsong5.jpg" alt="Logo" width="100%">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Limitations
+Their are some more features i wanted to add but due to time constraints i was not able to. But, I in future i will keep on working in this project.
