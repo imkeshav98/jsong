@@ -6,9 +6,9 @@ JSONG is for music lovers. Users can add their favorite songs to the website and
 
 # Useful Links:
 
-Demo : https://jsong-web.vercel.app/
-Backend Repo: https://github.com/imkeshav98/jsong-API
-Frontend Repo: https://github.com/imkeshav98/jsong
+- Demo : https://jsong-web.vercel.app/
+- Backend Repo: https://github.com/imkeshav98/jsong-API
+- Frontend Repo: https://github.com/imkeshav98/jsong
 
 ## Tech Stack
 
